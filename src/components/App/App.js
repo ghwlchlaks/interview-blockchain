@@ -7,9 +7,10 @@ import { datas } from '../../datas/Factory';
 
 class App extends Component {
   makeContents() {
+    let row = [];
     for (let label in datas) {
-      return (
-        <div className="pages__Content-sc-1sxqz4u-1 dVKpwM">
+      row.push(
+        <div className="pages__Content-sc-1sxqz4u-1 dVKpwM" key={label}>
           <h1 className="label" tabIndex="0">
             {label}
           </h1>
@@ -67,6 +68,7 @@ class App extends Component {
         </div>
       );
     }
+    return row;
   }
   makeInput(datas) {
     return (
@@ -134,11 +136,6 @@ class App extends Component {
         </div>
 
         {this.makeContents()}
-        {/* contract */}
-        {/* <Contract /> */}
-
-        {/* factory */}
-        {/* <Factory factoryDatas={factoryDatas} /> */}
       </div>
     );
   }
