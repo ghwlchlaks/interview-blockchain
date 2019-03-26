@@ -28,7 +28,9 @@ export default class Sidebar extends Component {
       if (target && target.nodeName === 'DIV') {
         let scroll = document.getElementById(target.innerHTML);
         if (scroll) {
-          scroll.scrollIntoView();
+          scroll.scrollIntoView({
+            behavior: 'smooth'
+          });
         }
 
         if (

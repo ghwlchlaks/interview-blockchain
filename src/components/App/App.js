@@ -19,7 +19,6 @@ class App extends Component {
             {label}
           </h1>
           {datas[label].map((value, index) => {
-            console.log(value.title);
             return (
               <div key={index} id={value.title}>
                 <div className="code__Title-k9e9h3-1 gMMQQA">{value.title}</div>
