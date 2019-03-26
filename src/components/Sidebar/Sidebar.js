@@ -26,6 +26,11 @@ export default class Sidebar extends Component {
     menu.addEventListener('click', function(e) {
       let target = e.target;
       if (target && target.nodeName === 'DIV') {
+        let scroll = document.getElementById(target.innerHTML);
+        if (scroll) {
+          scroll.scrollIntoView();
+        }
+
         if (
           !target.classList.contains('SDYKW') &&
           target.classList.contains('leftNavigation__LabelSelect-sc-11e7bjo-1')

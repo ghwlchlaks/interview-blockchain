@@ -10,13 +10,18 @@ class App extends Component {
     let row = [];
     for (let label in datas) {
       row.push(
-        <div className="pages__Content-sc-1sxqz4u-1 dVKpwM" key={label}>
+        <div
+          className="pages__Content-sc-1sxqz4u-1 dVKpwM"
+          key={label}
+          id={label}
+        >
           <h1 className="label" tabIndex="0">
             {label}
           </h1>
           {datas[label].map((value, index) => {
+            console.log(value.title);
             return (
-              <div key={index}>
+              <div key={index} id={value.title}>
                 <div className="code__Title-k9e9h3-1 gMMQQA">{value.title}</div>
                 <div
                   className={
