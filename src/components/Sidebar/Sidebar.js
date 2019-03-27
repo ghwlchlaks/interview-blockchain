@@ -37,13 +37,35 @@ export default class Sidebar extends Component {
           !target.classList.contains('SDYKW') &&
           target.classList.contains('leftNavigation__LabelSelect-sc-11e7bjo-1')
         ) {
-          toggleClass();
+          // 서브메뉴 삭제
+          let child = document.getElementsByClassName(
+            'leftNavigation__SubMenu-sc-11e7bjo-2'
+          );
+          let length = child.length;
+          if (child) {
+            for (let i = 0; i < length; i++) {
+              child[0].parentNode.removeChild(child[0]);
+            }
+          }
 
+          toggleClass();
           target.classList.add('SDYKW');
+
+          // 동적으로 서브 메뉴 추가 이벤트
+          datas[target.innerHTML].map((value, index) => {
+            let subDiv = document.createElement('div');
+            subDiv.classList.add(
+              'leftNavigation__SubMenu-sc-11e7bjo-2',
+              'kdhIax'
+            );
+            subDiv.innerHTML = value.title;
+            target.parentNode.appendChild(subDiv);
+          });
         } else if (
           !target.classList.contains('jSbGOb') &&
           target.classList.contains('leftNavigation__SubMenu-sc-11e7bjo-2')
         ) {
+          console.log(2);
           toggleClass();
 
           if (target.classList.contains('kdhIax')) {
@@ -63,16 +85,6 @@ export default class Sidebar extends Component {
           <div className="leftNavigation__LabelSelect-sc-11e7bjo-1 hgGTJo">
             {data}
           </div>
-          {datas[data].map((value, index) => {
-            return (
-              <div
-                className="leftNavigation__SubMenu-sc-11e7bjo-2 kdhIax"
-                key={index}
-              >
-                {value.title}
-              </div>
-            );
-          })}
         </div>
       );
     }
