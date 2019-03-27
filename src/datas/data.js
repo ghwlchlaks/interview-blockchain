@@ -1,4 +1,50 @@
 export const datas = {
+  Contract: [
+    {
+      title: 'Create New Web3 Object',
+      type: 'Func',
+      method: 'object',
+      permission: '-',
+      parameters: [],
+      responses: [],
+      descriptions: [
+        {
+          words: 'const web3Object = new Web3(window.web3.currentProvider)',
+          highlight: false
+        }
+      ]
+    },
+    {
+      title: 'Create New Contract Object',
+      type: 'Func',
+      method: 'object',
+      permission: '-',
+      parameters: [],
+      responses: [],
+      descriptions: [
+        {
+          words: 'const Contract = new web3Object.eth.Contract(',
+          highlight: false
+        },
+        {
+          words: '*abi',
+          highlight: true
+        },
+        {
+          words: ',',
+          highlight: false
+        },
+        {
+          words: ' *contractAddress',
+          highlight: true
+        },
+        {
+          words: ');',
+          highlight: false
+        }
+      ]
+    }
+  ],
   Factory: [
     {
       title: 'Get Factory ID',

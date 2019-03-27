@@ -3,7 +3,7 @@ import './App.css';
 
 import Sidebar from '../Sidebar/Sidebar';
 
-import { datas } from '../../datas/Factory';
+import { datas } from '../../datas/data';
 
 class App extends Component {
   makeContents() {
@@ -30,21 +30,35 @@ class App extends Component {
                 >
                   {value.type}
                 </div>
-                <div className="code__Method-k9e9h3-3 ksmAft">
-                  Contract.methods.{value.method}(
-                  {value.parameters.map((paramValue, paramIndex) => {
-                    return (
-                      <span key={paramIndex}>
-                        *{paramValue.field}
-                        {paramIndex === value.parameters.length - 1
-                          ? null
-                          : ', '}
-                      </span>
-                    );
-                  })}
-                  ).{value.type}(&#123; from : <span>*accountAddress</span>{' '}
-                  &#125;)
-                </div>
+
+                {/* object 형식과 function 형식 분류  */}
+                {value.method === 'object' ? (
+                  <div className="code__Method-k9e9h3-3 ksmAft">
+                    {value.descriptions.map((description, descIndex) => {
+                      return description.highlight ? (
+                        <span key={descIndex}>{description.words}</span>
+                      ) : (
+                        description.words
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className="code__Method-k9e9h3-3 ksmAft">
+                    Contract.methods.{value.method}(
+                    {value.parameters.map((paramValue, paramIndex) => {
+                      return (
+                        <span key={paramIndex}>
+                          *{paramValue.field}
+                          {paramIndex === value.parameters.length - 1
+                            ? null
+                            : ', '}
+                        </span>
+                      );
+                    })}
+                    ).{value.type}(&#123; from : <span>*accountAddress</span>{' '}
+                    &#125;)
+                  </div>
+                )}
 
                 <div className="code__Permission-k9e9h3-4 idnNek">
                   Permission : {value.permission}
@@ -61,11 +75,13 @@ class App extends Component {
                   ? this.makeInput(value.parameters)
                   : null}
 
-                <div className="code__Example-k9e9h3-5 iJAXNg">
-                  <button type="button">Click for test</button>
-                  <p>Result :</p>
-                  <div className="code__ExampleLine-k9e9h3-6 cClStL" />
-                </div>
+                {label === 'Contract' ? null : (
+                  <div className="code__Example-k9e9h3-5 iJAXNg">
+                    <button type="button">Click for test</button>
+                    <p>Result :</p>
+                    <div className="code__ExampleLine-k9e9h3-6 cClStL" />
+                  </div>
+                )}
               </div>
             );
           })}
@@ -139,7 +155,7 @@ class App extends Component {
           </p>
         </div>
 
-        <div className="pages__Content-sc-1sxqz4u-1 dVKpwM">
+        {/* <div className="pages__Content-sc-1sxqz4u-1 dVKpwM">
           <h1 className="label" tabIndex="0">
             Contract
           </h1>
@@ -168,7 +184,7 @@ class App extends Component {
               Permission :{' '}
             </div>
           </div>
-        </div>
+        </div> */}
 
         {this.makeContents()}
       </div>

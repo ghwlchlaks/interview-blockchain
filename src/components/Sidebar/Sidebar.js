@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Sidebar.css';
-import { datas } from '../../datas/Factory';
+import { datas } from '../../datas/data';
 
 export default class Sidebar extends Component {
   componentDidMount() {
@@ -52,7 +52,7 @@ export default class Sidebar extends Component {
           target.classList.add('SDYKW');
 
           // 동적으로 서브 메뉴 추가 이벤트
-          datas[target.innerHTML].map((value, index) => {
+          datas[target.innerHTML].forEach(value => {
             let subDiv = document.createElement('div');
             subDiv.classList.add(
               'leftNavigation__SubMenu-sc-11e7bjo-2',
@@ -65,7 +65,6 @@ export default class Sidebar extends Component {
           !target.classList.contains('jSbGOb') &&
           target.classList.contains('leftNavigation__SubMenu-sc-11e7bjo-2')
         ) {
-          console.log(2);
           toggleClass();
 
           if (target.classList.contains('kdhIax')) {
