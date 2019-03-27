@@ -78,6 +78,20 @@
   border-image: initial;
 }
 
+.cgLjMM table th {
+  background: rgb(238, 238, 238);
+}
+
+.cgLjMM table th,
+.cgLjMM table td {
+  height: 30px;
+  text-indent: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(64, 64, 64);
+  border-image: initial;
+}
+
 .hzfKcW .inputDiv {
   height: 40px;
 }
