@@ -1,3 +1,5 @@
+import { alertTest, defaultSendAlert } from './event';
+
 export const datas = {
   Contract: [
     {
@@ -58,7 +60,8 @@ export const datas = {
           type: 'number',
           description: 'Id of factory owned by Address called this function'
         }
-      ]
+      ],
+      event: alertTest
     },
     {
       title: 'Get Factory Info',
@@ -128,7 +131,8 @@ export const datas = {
           type: 'string',
           description: '	The ID of the factory'
         }
-      ]
+      ],
+      event: defaultSendAlert
     },
     {
       title: 'Edit Factory Info',
@@ -152,7 +156,8 @@ export const datas = {
           type: 'string',
           description: 'The detail of the factory you want to change'
         }
-      ]
+      ],
+      event: defaultSendAlert
     }
   ],
   Chimney: [
@@ -218,7 +223,8 @@ export const datas = {
           type: 'string',
           description: 'The detail of chimney'
         }
-      ]
+      ],
+      event: defaultSendAlert
     },
     {
       title: 'Edit Chimney',
@@ -247,7 +253,8 @@ export const datas = {
           type: 'string',
           description: 'The detail of chimney you want to edit'
         }
-      ]
+      ],
+      event: defaultSendAlert
     }
   ],
   Para: [
@@ -268,7 +275,8 @@ export const datas = {
           type: 'number',
           description: '	The ID of the pollutant you want to add (new to create)'
         }
-      ]
+      ],
+      event: defaultSendAlert
     },
     {
       title: 'Write name to Para',
@@ -292,7 +300,8 @@ export const datas = {
           type: 'number',
           description: 'The pollutant name you want to edit'
         }
-      ]
+      ],
+      event: defaultSendAlert
     }
   ],
   Data: [
@@ -359,7 +368,8 @@ export const datas = {
           description:
             'The Array of data to be added (must be in the same order as paraId)'
         }
-      ]
+      ],
+      event: defaultSendAlert
     }
   ]
 };

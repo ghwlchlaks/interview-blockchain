@@ -77,7 +77,9 @@ class App extends Component {
 
                 {label === 'Contract' ? null : (
                   <div className="code__Example-k9e9h3-5 iJAXNg">
-                    <button type="button">Click for test</button>
+                    <button type="button" onClick={value.event}>
+                      Click for test
+                    </button>
                     <p>Result :</p>
                     <div className="code__ExampleLine-k9e9h3-6 cClStL" />
                   </div>
