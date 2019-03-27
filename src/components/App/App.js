@@ -1,11 +1,51 @@
 import React, { Component } from 'react';
 import './App.css';
-
 import Sidebar from '../Sidebar/Sidebar';
-
 import { datas } from '../../datas/data';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      result: {}
+    };
+  }
+
+  clickHandler(event, e) {
+    const name = e.target.name;
+
+    this.setState(
+      {
+        result: {
+          ...this.state.result,
+          [name]: 'loading'
+        }
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
+
+    event()
+      .then(result => {
+        this.setState(
+          {
+            result: {
+              ...this.state.result,
+              [name]: result
+            }
+          },
+          () => {
+            console.log(this.state);
+          }
+        );
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   makeContents() {
     let row = [];
     for (let label in datas) {
@@ -77,10 +117,19 @@ class App extends Component {
 
                 {label === 'Contract' ? null : (
                   <div className="code__Example-k9e9h3-5 iJAXNg">
-                    <button type="button" onClick={value.event}>
+                    <button
+                      type="button"
+                      name={value.title}
+                      onClick={this.clickHandler.bind(this, value.event)}
+                    >
                       Click for test
                     </button>
-                    <p>Result :</p>
+                    <p>
+                      Result :
+                      {this.state.result[value.title] !== undefined
+                        ? this.state.result[value.title]
+                        : ''}
+                    </p>
                     <div className="code__ExampleLine-k9e9h3-6 cClStL" />
                   </div>
                 )}
@@ -156,37 +205,6 @@ class App extends Component {
             takes time to write to the block.
           </p>
         </div>
-
-        {/* <div className="pages__Content-sc-1sxqz4u-1 dVKpwM">
-          <h1 className="label" tabIndex="0">
-            Contract
-          </h1>
-          <div className="code__Wrapper-k9e9h3-0 hWQzFJ">
-            <div className="code__Title-k9e9h3-1 gMMQQA">
-              Create New Web3 Object
-            </div>
-            <div className="code__Type-k9e9h3-2 gyBjzW">Func</div>
-            <div className="code__Method-k9e9h3-3 ksmAft">
-              const web3Object = new Web3(window.web3.currentProvider);
-            </div>
-            <div className="code__Permission-k9e9h3-4 idnNek">
-              Permission :{' '}
-            </div>
-          </div>
-          <div className="code__Wrapper-k9e9h3-0 hWQzFJ">
-            <div className="code__Title-k9e9h3-1 gMMQQA">
-              Create New Contract Object
-            </div>
-            <div className="code__Type-k9e9h3-2 gyBjzW">Func</div>
-            <div className="code__Method-k9e9h3-3 ksmAft">
-              const Contract = new web3Object.eth.Contract(<span>*abi</span>,{' '}
-              <span>*contractAddress</span>);
-            </div>
-            <div className="code__Permission-k9e9h3-4 idnNek">
-              Permission :{' '}
-            </div>
-          </div>
-        </div> */}
 
         {this.makeContents()}
       </div>

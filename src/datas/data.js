@@ -1,4 +1,10 @@
-import { alertTest, defaultSendAlert } from './event';
+import { GetFactoryId, defaultSendAlert } from './event';
+import { abi } from './abi';
+
+const ethers = require('ethers');
+const provider = ethers.getDefaultProvider('kovan');
+const contractAddress = '0x1d406FFCA0d61df0e659887B2F501ead6Bb96426';
+const contract = new ethers.Contract(contractAddress, abi, provider);
 
 export const datas = {
   Contract: [
@@ -61,7 +67,10 @@ export const datas = {
           description: 'Id of factory owned by Address called this function'
         }
       ],
-      event: alertTest
+      event: async function GetFactoryId() {
+        const currentValue = await contract.GetFactoryId();
+        return currentValue;
+      }
     },
     {
       title: 'Get Factory Info',
