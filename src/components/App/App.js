@@ -198,7 +198,7 @@ class App extends Component {
                             }
                           )
                           : this.state.result[value.title].status !== 'Success'
-                            ? this.state.result[value.title].status
+                            ? this.state.result[value.title].status === 'Loading'
                             : this.state.result[value.title].data}
                       </div>
                     ) : (
@@ -221,7 +221,6 @@ class App extends Component {
    * @param {String} title 함수 title
    */
   makeInput(datas, title) {
-    console.log(datas);
     return (
       <div className="code__Test-k9e9h3-8 hzfKcW">
         <h4>Input parameter for test</h4>
