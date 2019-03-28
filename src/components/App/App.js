@@ -17,6 +17,20 @@ class App extends Component {
 
   clickHandler(length, event, e) {
     const name = e.target.name;
+
+    const inputNames = document.getElementsByName(name);
+    for (let i = 0; i < inputNames.length; i++) {
+      if (inputNames[i].tagName === 'INPUT') {
+        inputNames[i].value = '';
+      }
+    }
+    this.setState({
+      input: {
+        ...this.state.input,
+        [name]: ''
+      }
+    });
+
     if (length) {
       if (
         !this.state.input[name] ||
@@ -185,6 +199,7 @@ class App extends Component {
     }
     return row;
   }
+
   makeInput(datas, title) {
     return (
       <div className="code__Test-k9e9h3-8 hzfKcW">
