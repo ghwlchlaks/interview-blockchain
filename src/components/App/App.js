@@ -15,6 +15,12 @@ class App extends Component {
     this.inputChangeHandler = this.inputChangeHandler.bind(this);
   }
 
+  /**
+   *
+   * @param {Number} length 입력할 파라미터 길이
+   * @param {Function} event 버튼 클릭 함수
+   * @param {Event} e button Event 객체
+   */
   clickHandler(length, event, e) {
     const name = e.target.name;
 
@@ -82,6 +88,7 @@ class App extends Component {
     }
   }
 
+  // Contents 구조 생성
   makeContents() {
     let row = [];
     for (let label in datas) {
@@ -96,6 +103,7 @@ class App extends Component {
           </h1>
           {datas[label].map((value, index) => {
             return (
+              // type에 맞는 class지정
               <div key={index} id={value.title}>
                 <div className="code__Title-k9e9h3-1 gMMQQA">{value.title}</div>
                 <div
@@ -136,21 +144,27 @@ class App extends Component {
                   </div>
                 )}
 
+                {/* permission 출력 */}
                 <div className="code__Permission-k9e9h3-4 idnNek">
                   Permission : {value.permission}
                 </div>
+
+                {/* parameters 출력 */}
                 {value.parameters.length > 0
                   ? this.makeTable(value.parameters, 'Parameter')
                   : null}
 
+                {/* responses 출력 */}
                 {value.responses.length > 0
                   ? this.makeTable(value.responses, 'Response')
                   : null}
 
+                {/* input text 출력 */}
                 {value.parameters.length > 0
                   ? this.makeInput(value.parameters, value.title)
                   : null}
 
+                {/* button event binding */}
                 {label === 'Contract' ? null : (
                   <div className="code__Example-k9e9h3-5 iJAXNg">
                     <button
@@ -165,6 +179,7 @@ class App extends Component {
                       Click for test
                     </button>
                     <p>Result :</p>
+                    {/* 결과 출력 */}
                     {this.state.result[value.title] !== undefined ? (
                       <div className="code__ExampleLine-k9e9h3-6 cClStL">
                         {this.state.result[value.title].length
@@ -200,7 +215,13 @@ class App extends Component {
     return row;
   }
 
+  /**
+   *
+   * @param {Object} datas table 데이터
+   * @param {String} title 함수 title
+   */
   makeInput(datas, title) {
+    console.log(datas);
     return (
       <div className="code__Test-k9e9h3-8 hzfKcW">
         <h4>Input parameter for test</h4>
@@ -221,6 +242,7 @@ class App extends Component {
     );
   }
 
+  // input change 이벤트
   inputChangeHandler(e) {
     const { name, id, value } = e.target;
 
@@ -235,6 +257,11 @@ class App extends Component {
     });
   }
 
+  /**
+   *
+   * @param {*} datas table 데이터
+   * @param {*} tableTitle 함수 title
+   */
   makeTable(datas, tableTitle) {
     return (
       <div className="code__Param-k9e9h3-7 cgLjMM">
