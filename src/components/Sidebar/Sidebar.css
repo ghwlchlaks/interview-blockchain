@@ -1,3 +1,4 @@
+/* sidebar 전체 */
 .cXdfkr {
   left: 0px;
   top: 0px;
@@ -8,6 +9,7 @@
   padding: 20px;
 }
 
+/* sidebar main menu inactive*/
 .hgGTJo {
   width: 100%;
   height: 30px;
@@ -19,18 +21,20 @@
   font-weight: bold;
   cursor: pointer;
 }
-
-.jSbGOb {
-  height: 25px;
-  font-size: 15px;
-  line-height: 25px;
-  margin-bottom: 10px;
-  color: rgb(255, 255, 255);
+/* sidebar main menu active */
+.SDYKW {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  text-indent: 10px;
+  margin-bottom: 15px;
   background-color: rgb(60, 146, 202);
-  text-indent: 15px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
   cursor: pointer;
 }
 
+/* sidebar sub menu inactive*/
 .kdhIax {
   height: 25px;
   font-size: 15px;
@@ -42,14 +46,14 @@
   cursor: pointer;
 }
 
-.SDYKW {
-  width: 100%;
-  height: 30px;
-  line-height: 30px;
-  text-indent: 10px;
-  margin-bottom: 15px;
-  background-color: rgb(60, 146, 202);
+/* sidebar sub menu active*/
+.jSbGOb {
+  height: 25px;
+  font-size: 15px;
+  line-height: 25px;
+  margin-bottom: 10px;
   color: rgb(255, 255, 255);
-  font-weight: bold;
+  background-color: rgb(60, 146, 202);
+  text-indent: 15px;
   cursor: pointer;
 }
