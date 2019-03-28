@@ -409,8 +409,8 @@ export const datas = {
         const data = [
           {
             name: currentValue.name,
-            timestamps: parseInt(currentValue.timestamps, 16),
-            datas: parseInt(currentValue.datas, 16)
+            timestamps: parseInt(currentValue.timestamps[0]._hex, 16),
+            datas: parseInt(currentValue.datas[0]._hex, 16)
           }
         ];
         return data;

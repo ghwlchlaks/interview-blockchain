@@ -1,9 +1,17 @@
 # 실행 방법
 
+#### step1
+
 ```
 cd interview-blockchain
 npm install
 npm start
+```
+
+#### step2
+
+```
+localhost:3000 접속
 ```
 
 # config
