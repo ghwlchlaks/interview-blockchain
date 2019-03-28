@@ -198,7 +198,7 @@ class App extends Component {
                             }
                           )
                           : this.state.result[value.title].status !== 'Success'
-                            ? this.state.result[value.title].status === 'Loading'
+                            ? this.state.result[value.title].status
                             : this.state.result[value.title].data}
                       </div>
                     ) : (
