@@ -17,7 +17,6 @@ class App extends Component {
 
   clickHandler(length, event, e) {
     const name = e.target.name;
-
     if (length) {
       if (
         !this.state.input[name] ||
@@ -33,7 +32,7 @@ class App extends Component {
         result: {
           ...this.state.result,
           [name]: {
-            status: 'loading',
+            status: 'Loading',
             length: 0
           }
         }
@@ -54,6 +53,15 @@ class App extends Component {
         })
         .catch(err => {
           console.log(err);
+          this.setState({
+            result: {
+              ...this.state.result,
+              [name]: {
+                status: 'Error',
+                length: 0
+              }
+            }
+          });
         });
     } else {
       alert('Send 타입 alert입니다.');
@@ -160,8 +168,8 @@ class App extends Component {
                               return data;
                             }
                           )
-                          : this.state.result[value.title].status === 'loading'
-                            ? 'loading'
+                          : this.state.result[value.title].status !== 'Success'
+                            ? this.state.result[value.title].status
                             : this.state.result[value.title].data}
                       </div>
                     ) : (
@@ -205,7 +213,7 @@ class App extends Component {
       input: {
         ...this.state.input,
         [name]: {
-          ...this.state[name],
+          ...this.state.input[name],
           [id]: value
         }
       }

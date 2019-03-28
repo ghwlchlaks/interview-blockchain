@@ -219,7 +219,21 @@ export const datas = {
           type: 'number',
           description: 'The id of the chimney to be read information'
         }
-      ]
+      ],
+      event: async function GetChimneyInfo(param) {
+        const chimneyId = param.chimneyId;
+        const currentValue = await contract.GetChimneyInfo(chimneyId);
+        const data = [
+          {
+            name: currentValue.name,
+            location: currentValue.location,
+            detail: currentValue.location,
+            factoryId: currentValue.factoryId,
+            paraN: currentValue.paraN
+          }
+        ];
+        return data;
+      }
     },
     {
       title: 'Add Chimney',
@@ -328,17 +342,17 @@ export const datas = {
       permission: 'All',
       responses: [
         {
-          field: 'rowNumber',
+          field: 'name',
           type: 'number',
           description: '	The number of data you want to read at once'
         },
         {
-          field: 'chimneyId',
+          field: 'timestamps',
           type: 'number',
           description: 'The ID of chimney you want to read'
         },
         {
-          field: 'paraId',
+          field: 'datas',
           type: 'number',
           description: 'The ID of pollutant of chimney you want to read'
         }
@@ -350,16 +364,34 @@ export const datas = {
           description: 'The pollutant name'
         },
         {
-          field: 'timestamps',
+          field: 'chimneyId',
           type: 'array',
           description: 'The time the data was recorded.'
         },
         {
-          field: 'datas',
+          field: 'paraId',
           type: 'array',
           description: 'The data recorded at each timestamp'
         }
-      ]
+      ],
+      event: async function GetRecordData(param) {
+        const rowNumber = param.rowNumber;
+        const chimneyId = param.chimneyId;
+        const paraId = param.paraId;
+        const currentValue = await contract.GetRecordData(
+          rowNumber,
+          chimneyId,
+          paraId
+        );
+        const data = [
+          {
+            name: currentValue.name,
+            timestamps: parseInt(currentValue.timestamps, 16),
+            datas: parseInt(currentValue.datas, 16)
+          }
+        ];
+        return data;
+      }
     },
     {
       title: 'Record Data',
