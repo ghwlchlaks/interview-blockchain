@@ -11,9 +11,9 @@ export async function GetFactoryId() {
   return currentValue;
 }
 
-export function defaultSendAlert() {
-  alert('Send type alert창입니다.');
-}
+// export function defaultSendAlert() {
+//   alert('Send type alert창입니다.');
+// }
 
 export const events = {
   GetFactoryId: async function GetFactoryId() {

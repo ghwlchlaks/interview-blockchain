@@ -123,3 +123,19 @@
   border-radius: 5px;
   outline: 0px;
 }
+
+.cClStL {
+  width: 100%;
+  margin-top: 5px;
+  min-height: 30px;
+  background-color: black;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.cClStL .result {
+  text-indent: 10px;
+}

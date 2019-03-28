@@ -14,36 +14,56 @@ class App extends Component {
 
   clickHandler(event, e) {
     const name = e.target.name;
-
-    this.setState(
-      {
-        result: {
-          ...this.state.result,
-          [name]: 'loading'
-        }
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
-
-    event()
-      .then(result => {
-        this.setState(
-          {
-            result: {
-              ...this.state.result,
-              [name]: result
+    if (event) {
+      this.setState(
+        {
+          result: {
+            ...this.state.result,
+            [name]: {
+              status: 'loading',
+              length: 0
             }
-          },
-          () => {
-            console.log(this.state);
           }
-        );
-      })
-      .catch(err => {
-        console.log(err);
-      });
+        },
+        () => {
+          console.log(this.state);
+        }
+      );
+
+      const test = [
+        {
+          name: '울산 반도체 굴뚝1',
+          location: '울산광역시 ~구',
+          detail: '허용 기준치 0.234 ppm',
+          factoryId: 1,
+          paraN: 2
+        }
+      ];
+      console.log(test.length);
+      event()
+        .then(result => {
+          this.setState(
+            {
+              result: {
+                ...this.state.result,
+                [name]: {
+                  status: 'Success',
+                  data: result,
+                  length: result.length
+                }
+              }
+            },
+            () => {
+              console.log(this.state);
+            }
+          );
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      alert('Send 타입 alert입니다.');
+    }
   }
 
   makeContents() {
@@ -124,13 +144,31 @@ class App extends Component {
                     >
                       Click for test
                     </button>
-                    <p>
-                      Result :
-                      {this.state.result[value.title] !== undefined
-                        ? this.state.result[value.title]
-                        : ''}
-                    </p>
-                    <div className="code__ExampleLine-k9e9h3-6 cClStL" />
+                    <p>Result :</p>
+                    {this.state.result[value.title] !== undefined ? (
+                      <div className="code__ExampleLine-k9e9h3-6 cClStL">
+                        {this.state.result[value.title].length
+                          ? this.state.result[value.title].data.map(
+                            (values, index) => {
+                              let data = ['{'];
+                              for (let key in values) {
+                                data.push(
+                                  <div key={key + index} className="result">
+                                    {key} : <span>{values[key]}</span>
+                                  </div>
+                                );
+                              }
+                              data.push('}');
+                              return data;
+                            }
+                          )
+                          : this.state.result[value.title].status === 'loading'
+                            ? 'loading'
+                            : this.state.result[value.title].data}
+                      </div>
+                    ) : (
+                      ' '
+                    )}
                   </div>
                 )}
               </div>
