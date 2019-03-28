@@ -25,6 +25,7 @@ export default class Sidebar extends Component {
 
     menu.addEventListener('click', function(e) {
       let target = e.target;
+      // 스크롤 이벤트
       if (target && target.nodeName === 'DIV') {
         let scroll = document.getElementById(target.innerHTML);
         if (scroll) {
@@ -76,6 +77,7 @@ export default class Sidebar extends Component {
     });
   }
 
+  // 메뉴(사이드바) 구조 생성
   makeMenu() {
     let row = [];
     for (let data in datas) {
