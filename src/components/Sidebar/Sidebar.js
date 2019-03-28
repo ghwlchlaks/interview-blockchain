@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Sidebar.css';
-import { datas } from '../../datas/data';
+import { datas } from '../../datas/config';
 
 export default class Sidebar extends Component {
   componentDidMount() {

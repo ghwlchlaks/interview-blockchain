@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Sidebar from '../Sidebar/Sidebar';
-import { datas } from '../../datas/data';
+import { datas } from '../../datas/config';
 
 class App extends Component {
   constructor(props) {

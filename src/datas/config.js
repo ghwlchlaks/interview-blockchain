@@ -4,7 +4,30 @@ const ethers = require('ethers');
 const provider = ethers.getDefaultProvider('kovan');
 const contractAddress = '0x1d406FFCA0d61df0e659887B2F501ead6Bb96426';
 const contract = new ethers.Contract(contractAddress, abi, provider);
-
+/**
+ * mainTitle : [{
+ *    title: 제목
+ *    type: Func, Call, Send 중 한개
+ *    method: method 이름, 디폴트 object
+ *    permission: 권한
+ *    parameters: [{
+ *      field: 필드 이름,
+ *      type: 필드 타입,
+ *      description: 필드 설명
+ *    }]
+ *    responses: [{
+ *      field: 필드 이름,
+ *      type: 필드 타입,
+ *      description: 필드 설명
+ *    }],
+ *    description: [{
+ *      // Contract에 적용
+ *       words: 출력할 글
+ *       highlight: 하이라이트 유무
+ *    }],
+ *    event: 바인딩할 event
+ * }]
+ */
 export const datas = {
   Contract: [
     {
