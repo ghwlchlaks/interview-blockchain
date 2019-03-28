@@ -8,55 +8,49 @@ class App extends Component {
     super(props);
 
     this.state = {
-      result: {}
+      result: {},
+      input: {}
     };
+
+    this.inputChangeHandler = this.inputChangeHandler.bind(this);
   }
 
-  clickHandler(event, e) {
+  clickHandler(length, event, e) {
     const name = e.target.name;
-    if (event) {
-      this.setState(
-        {
-          result: {
-            ...this.state.result,
-            [name]: {
-              status: 'loading',
-              length: 0
-            }
-          }
-        },
-        () => {
-          console.log(this.state);
-        }
-      );
 
-      const test = [
-        {
-          name: '울산 반도체 굴뚝1',
-          location: '울산광역시 ~구',
-          detail: '허용 기준치 0.234 ppm',
-          factoryId: 1,
-          paraN: 2
+    if (length) {
+      if (
+        !this.state.input[name] ||
+        Object.keys(this.state.input[name]).length !== length
+      ) {
+        alert('입력항목을 모두 채워주세요');
+        return;
+      }
+    }
+
+    if (event) {
+      this.setState({
+        result: {
+          ...this.state.result,
+          [name]: {
+            status: 'loading',
+            length: 0
+          }
         }
-      ];
-      console.log(test.length);
-      event()
+      });
+
+      event(this.state.input[name])
         .then(result => {
-          this.setState(
-            {
-              result: {
-                ...this.state.result,
-                [name]: {
-                  status: 'Success',
-                  data: result,
-                  length: result.length
-                }
+          this.setState({
+            result: {
+              ...this.state.result,
+              [name]: {
+                status: 'Success',
+                data: result,
+                length: result.length
               }
-            },
-            () => {
-              console.log(this.state);
             }
-          );
+          });
         })
         .catch(err => {
           console.log(err);
@@ -132,7 +126,7 @@ class App extends Component {
                   : null}
 
                 {value.parameters.length > 0
-                  ? this.makeInput(value.parameters)
+                  ? this.makeInput(value.parameters, value.title)
                   : null}
 
                 {label === 'Contract' ? null : (
@@ -140,7 +134,11 @@ class App extends Component {
                     <button
                       type="button"
                       name={value.title}
-                      onClick={this.clickHandler.bind(this, value.event)}
+                      onClick={this.clickHandler.bind(
+                        this,
+                        value.parameters.length,
+                        value.event
+                      )}
                     >
                       Click for test
                     </button>
@@ -179,7 +177,7 @@ class App extends Component {
     }
     return row;
   }
-  makeInput(datas) {
+  makeInput(datas, title) {
     return (
       <div className="code__Test-k9e9h3-8 hzfKcW">
         <h4>Input parameter for test</h4>
@@ -187,7 +185,12 @@ class App extends Component {
           return (
             <div className="inputDiv" key={index}>
               <label>{value.field}</label>
-              <input onChange={this.inputChangeHandler} type="text" value="" />
+              <input
+                name={title}
+                id={value.field}
+                onChange={this.inputChangeHandler}
+                type="text"
+              />
             </div>
           );
         })}
@@ -195,7 +198,19 @@ class App extends Component {
     );
   }
 
-  inputChangeHandler() {}
+  inputChangeHandler(e) {
+    const { name, id, value } = e.target;
+
+    this.setState({
+      input: {
+        ...this.state.input,
+        [name]: {
+          ...this.state[name],
+          [id]: value
+        }
+      }
+    });
+  }
 
   makeTable(datas, tableTitle) {
     return (

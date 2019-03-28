@@ -110,9 +110,19 @@ export const datas = {
           description: 'The arrangement of the code of a chimney that factory.'
         }
       ],
-      event: async function GetFactoryInfo() {
-        const currentValue = await contract.GetFactoryInfo();
-        return currentValue;
+      event: async function GetFactoryInfo(param) {
+        const factoryId = param.factoryId;
+        const currentValue = await contract.GetFactoryInfo(factoryId);
+        const data = [
+          {
+            name: currentValue.name,
+            location: currentValue.location,
+            detail: currentValue.location,
+            chimneyN: currentValue.chimneyN,
+            chimneyIds: currentValue.chimneyIds.toString()
+          }
+        ];
+        return data;
       }
     },
     {
